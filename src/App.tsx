@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Global from './styles/Global';
 import Header from './components/Header';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, DefaultTheme } from 'styled-components';
 import light from './styles/themes/light';
 import dark from './styles/themes/dark';
+import useStorage from './hooks/useStorage';
 
 
 function App() {
-  const [theme, setTheme] = useState(light);
+  const [theme, setTheme] = useStorage<DefaultTheme>('theme', light);
 
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light)
